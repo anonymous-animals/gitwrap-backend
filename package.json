@@ -4,14 +4,18 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "chai": "^4.2.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "mocha": "^8.2.1",
     "mongoose": "^5.10.14",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "supertest": "^6.0.1"
   },
   "devDependencies": {},
   "scripts": {
-    "dev": "nodemon index"
+    "dev": "nodemon index",
+    "test": "node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
