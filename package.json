@@ -1,0 +1,27 @@
+{
+  "name": "gitwrap-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.14",
+    "nodemon": "^2.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anonymous-animals/gitwrap-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anonymous-animals/gitwrap-backend/issues"
+  },
+  "homepage": "https://github.com/anonymous-animals/gitwrap-backend#readme"
+}
