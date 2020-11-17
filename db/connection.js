@@ -1,5 +1,10 @@
 const mongoose = require ('mongoose')
-const mongoURI = 'mongodb://localhost/gitwrap-db'
+
+const mongoURI =
+  process.env.NODE_ENV === 'production'
+    ? process.env.DB_URL
+    : 'mongodb://localhost/book-e';
+    
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

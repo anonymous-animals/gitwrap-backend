@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Bose Headphones",
+    "description": "QuietComfort 35 wireless headphones II are engineered with renowned noise cancellation. With the Google Assistant and Amazon Alexa built-in, you have instant access to millions of songs, playlists and more—hands free.* Simply choose your voice assistant and ask away.",
+    "image": "https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/qc35_ii/product_silo_images/qc35_ii_black_EC_02.psd/jcr:content/renditions/cq5dam.web.600.600.png",
+    "price": 299.95,
+    "link": "https://www.bose.com/en_us/products/headphones/over_ear_headphones/quietcomfort-35-wireless-ii.html?mc=25_PS_HP_PL_00_GO_&gclid=Cj0KCQiA48j9BRC-ARIsAMQu3WRnQZ_6Uj8i_YsBKHVkuzpC2zHvXN2CQEhYkAIfeIBkRN8O2x7_Jj4aAoJxEALw_wcB&gclsrc=aw.ds#v=qc35_ii_black",
+    "category": ["tech", "music"]
+  },
+  {
+    "name": "Milkbar: Birthday Cake",
+    "description": "Our bestselling Birthday Cake is inspired by the supermarket stuff we grew up with, and it took us over two years to get it just right: three tiers of rainbow-flecked vanilla Birthday cake layered with creamy Birthday frosting, crunchy Birthday crumbs, and rainbow sprinkles. Tastes like childhood. 6 inch cake serves 8-12; 10 inch cake serves 20-30.",
+    "image": "https://cdn.shopify.com/s/files/1/0034/7550/5225/products/Birthday_Cake_6in_Overhead-1_800x.jpg?v=1579840506",
+    "price": 50,
+    "link": "https://milkbarstore.com/collections/cakes/products/birthday-cake?utm_medium=cpc&utm_source=pinterest&utm_campaign=ret_evergreen&pp=1",
+    "category": "food"
+  },
+  {
+    "name": "Harry Potter Mashup Set",
+    "description": "Using the American hardcover edition published by Scholastic and packed in their traveling trunk, this set will bring the magic of J. K. Rowling’s Wizarding World to your bookshelf",
+    "image": "https://cdn.shopify.com/s/files/1/0064/5342/8271/products/HPMU7-harry-potter-mashup-1-1200_1200x.jpg?v=1556681469",
+    "price": 295,
+    "link": "https://www.juniperbooks.com/products/harry-potter-mashup-set/",
+    "category": "movies"
+  },
+  {
+    "name": "Personalized Picnic Table Wine Carrier",
+    "description": "They saw and sand all the pieces by hand in their shop, then engrave it with your family name and special date. Pack up your spread, then just extend the legs to turn your tote into a table. It makes a sweet wedding or anniversary gift for the couple who knows fresh air makes any meal a memorable one. Handmade in Jacksonville, Oregon",
+    "image": "https://www.uncommongoods.com/images/items/49100/49181_1_640px.jpg",
+    "price": 180,
+    "link": "https://www.uncommongoods.com/product/personalized-picnic-table-wine-carrier",
+    "category": "adventure"
+  },
+  {
+    "name": "Personalized Wine",
+    "description": "Don’t be just another gift in the pile- send a bottle of wine they'll cherish. With Personal Wine's online wine gifts, you’ll effortlessly pull their heartstrings by creating your own message that’ll stay with them forever.",
+    "image": "https://assets.personalwine.com/assets/frontend/pages/wine_gifts/wine_gifts_label_2-323c2aa11e5ca5d7acd6317bc797bc4674eed64db9fcd229e27b1e45cd65e837.png",
+    "price": 35,
+    "link": "https://www.personalwine.com/wine-gifts",
+    "category": "food"
+  },
+  {
+    "name": "MLB Game Used Baseball Bat Bottle Openers",
+    "description": "There's more to America's favorite pastime than runs, hits, and errors: the smell of hot dogs and popcorn, the thrill of hitting a homer, the perfect chill of a cold beer on a hot August afternoon... Enjoy an instant replay of the bat-on-ball crack every time you crack a cold one with these Baseball Bat Bottle Openers. Handmade from authentic game-day bats swung by MLB players, each opener comes gift-boxed with a story card including instructions for its special hologram number, indicating which game the bat was used in. Bats from the US, hardware from China. Hand-assembled in the US. Colors may vary.",
+    "image": "https://www.uncommongoods.com/images/items/20100/20110_1_640px.jpg",
+    "price": 115,
+    "link": "https://www.uncommongoods.com/product/mlb-game-used-baseball-bat-bottle-openers",
+    "category": "sports"
+  }
+]
