@@ -16,7 +16,8 @@
   "scripts": {
     "dev": "nodemon index",
     "start": "node index.js",
-    "test": "node_modules/.bin/mocha"
+    "test": "node_modules/.bin/mocha",
+    "seeds": "node db/seeds.js"
   },
   "repository": {
     "type": "git",
