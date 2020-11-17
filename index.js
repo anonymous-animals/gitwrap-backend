@@ -1,12 +1,13 @@
 // REQUIREMENTS
 const express = require('express');
 const app = express();
-
+const cors = require('cors');
 
 
 //MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
+app.use(cors());
 
 app.get('/', (req, res) => {
 	res.redirect('/gifts')
