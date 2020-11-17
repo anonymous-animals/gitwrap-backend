@@ -15,6 +15,7 @@
   "devDependencies": {},
   "scripts": {
     "dev": "nodemon index",
+    "start": "node index.js",
     "test": "node_modules/.bin/mocha"
   },
   "repository": {
