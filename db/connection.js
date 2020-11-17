@@ -1,7 +1,7 @@
 const mongoose = require ('mongoose')
 
 const mongoURI =
-  process.env.PORT === 'production'
+  process.env.NODE_ENV === 'production'
     ? process.env.DB_URL
     : 'mongodb://localhost/gifts';
     

@@ -26,6 +26,8 @@ res.status(statusCode).send(message)
 
 
 // PORT
-app.listen(4000, () => {
-	console.log('running on 4000');
+app.set('port', process.env.PORT || 4000);
+
+app.listen(app.get('port'), () => {
+	console.log(`✅ PORT: ${app.get('port')} 🌟`);
 });
