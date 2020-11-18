@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt')
 
+// const { createUserToken } = require('../middleware/auth');
 
 // SIGN UP
 // POST /user/signup
