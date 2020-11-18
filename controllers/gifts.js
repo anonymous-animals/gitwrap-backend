@@ -11,6 +11,19 @@ router.get('/', (req, res, next) => {
     .catch(next);
 })
 
+// INDEX FOR CATEGORIES /gifts/:category
+router.get('/:category', (req, res, next) => {
+  const category = req.params.category
+  Gift.find({category: category})
+    .then((gifts) => {
+      res.json(gifts)
+    })
+    .catch(next)
+})
+
+
+
+
 // SHOW -> /gifts/:id
 router.get('/:id', (req, res, next) => {
   Gift.findById(req.params.id)

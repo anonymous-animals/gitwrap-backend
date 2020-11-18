@@ -3,11 +3,18 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
+const requestLogger = require('./middleware/request_logger');
+const { handleErrors } = require('./middleware/custom_errors')
+
+
 
 //MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(cors());
+
+app.use(requestLogger)
+app.use(handleErrors)
 
 app.get('/', (req, res) => {
 	res.redirect('/gifts')
@@ -16,6 +23,11 @@ app.get('/', (req, res) => {
 // CONTROLLERS
 const giftsController = require('./controllers/gifts')
 app.use('/gifts', giftsController)
+
+const userController = require('./controllers/users')
+app.use('/user', userController)
+
+
 
 app.use((err, req, res, next) => {
 	const statusCode = res.statusCode || 500;
