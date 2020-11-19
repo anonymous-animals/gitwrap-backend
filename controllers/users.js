@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt')
 
-// const { createUserToken } = require('../middleware/auth');
+const { createUserToken } = require('../middleware/auth');
 
 // SIGN UP
 // POST /user/signup
@@ -26,13 +26,20 @@ router.post('/signup', (req, res, next) => {
 // POST /user/signin
 router.post('/signin', (req, res, next) => {
   User.findOne({ email: req.body.email })
-    // .then((user) => createUserToken(req, user))
-    // .then((token) => res.json({ token }))
+    .then((user) => createUserToken(req, user))
+    .then((token) => res.json({ token }))
     .catch(next);
 });
 
-
-
+// ADD TO FAVORITES
+router.get('/favorites', (req, res, next) => {
+  User.find({})
+    .then((stuff) => {
+      res.json(stuff)
+    })
+    .catch(next)
+})
+// 
 
 
 
