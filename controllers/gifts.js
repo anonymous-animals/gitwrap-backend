@@ -2,8 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Gift = require('../models/gift');
 
+const { requireToken } = require('../middleware/auth');
+
+
 // INDEX -> /gifts
-router.get('/', (req, res, next) => {
+router.get('/', requireToken, (req, res, next) => {
 	Gift.find({})
 		.then((gifts) => {
 			res.json(gifts);
@@ -30,12 +33,13 @@ router.get('/:id', (req, res, next) => {
 		.catch(next);
 });
 
-// PRACTICE
-router.get('/practice/practice/:price', (req, res, next) => {
+// FILTER PRICE /gifts/price/number
+router.get(`/price/:price/`, (req, res, next) => {
   const min = 0
-  const max = req.params.price
+	const max = req.params.price
+	const category = req.params.cateegory
   Gift.find({
-    price: { $gt: min, $lt: max }
+		price: { $gt: min, $lt: max },
   })
     .then((gifts) => {
       res.json(gifts)
@@ -43,8 +47,8 @@ router.get('/practice/practice/:price', (req, res, next) => {
     .catch(next)
 })
 
-// TRAINING
-router.get('/training/training', (req, res, next) => {
+// ASCENDING SORT /gifts/sort/asc
+router.get('/sort/asc', (req, res, next) => {
   Gift.find({}).sort({
     price: 1
   })
@@ -54,17 +58,28 @@ router.get('/training/training', (req, res, next) => {
     .catch(next)
 })
 
-// DAMN
-router.get('/damn/damn', (req, res, next) => {
-  const item = 'MLB Game Used Baseball Bat Bottle Opener'
-  Gift.find({
-    name: { $in: [ item ] }
+// DESCENDING SORT /gifts/sort/des
+router.get('/sort/des', (req, res, next) => {
+  Gift.find({}).sort({
+    price: -1
   })
     .then((gifts) => {
       res.json(gifts)
     })
     .catch(next)
 })
+
+// // DAMN
+// router.get('/damn/damn', (req, res, next) => {
+//   const item = 'MLB Game Used Baseball Bat Bottle Opener'
+//   Gift.find({
+//     name: { $in: [ item ] }
+//   })
+//     .then((gifts) => {
+//       res.json(gifts)
+//     })
+//     .catch(next)
+// })
 
 //CREATE -> /gifts
 router.post('/', (req, res, next) => {

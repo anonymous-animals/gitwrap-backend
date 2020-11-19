@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      required: true
+      // required: true
     },
     email: {
       type: String,
@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    favorites: [String]
   },
   {
     timestamps: true,
@@ -27,7 +28,6 @@ const userSchema = new mongoose.Schema(
     },
   }
 );
-
 
 
 
