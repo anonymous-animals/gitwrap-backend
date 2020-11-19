@@ -73,7 +73,7 @@ router.put('/:id/:giftId', (req, res, next) => {
 		.then((gift) => {
 			return User.findOneAndUpdate(
 				{ _id: req.params.id },
-				{ $push: { favorites: gift._id } },
+				{ $push: { favorites: gift } },
 				{ new: true }
 			);
 		})
@@ -82,6 +82,25 @@ router.put('/:id/:giftId', (req, res, next) => {
 		})
 		.catch(next);
 });
+
+
+
+router.put('/id/:id/:giftId', (req, res, next) => {
+	Gift.findById(req.params.giftId)
+		.then((gift) => {
+			return User.findOneAndUpdate(
+				{ gift: req.body },
+				{ $push: { favorites: gift } },
+				{ new: true }
+			);
+		})
+		.then((user) => {
+			res.json(user);
+		})
+		.catch(next);
+});
+
+
 
 //find users favorites
 router.get('/gifts/:userId', (req, res, next) => {
@@ -93,6 +112,18 @@ router.get('/gifts/:userId', (req, res, next) => {
 		.then((gifts) => {
 			console.log(gifts);
 		})
+		.catch(next);
+});
+
+router.get('/user/:userId', (req, res, next) => {
+	User.findById(req.params.userId)
+		.then((user) => {
+			res.json(user);
+		})
+		//getting an array of our favorites
+		// .then((gifts) => {
+		// 	console.log(gifts);
+		// })
 		.catch(next);
 });
 
