@@ -30,6 +30,42 @@ router.get('/:id', (req, res, next) => {
 		.catch(next);
 });
 
+// PRACTICE
+router.get('/practice/practice/:price', (req, res, next) => {
+  const min = 0
+  const max = req.params.price
+  Gift.find({
+    price: { $gt: min, $lt: max }
+  })
+    .then((gifts) => {
+      res.json(gifts)
+    })
+    .catch(next)
+})
+
+// TRAINING
+router.get('/training/training', (req, res, next) => {
+  Gift.find({}).sort({
+    price: 1
+  })
+    .then((gifts) => {
+      res.json(gifts)
+    })
+    .catch(next)
+})
+
+// DAMN
+router.get('/damn/damn', (req, res, next) => {
+  const item = 'MLB Game Used Baseball Bat Bottle Opener'
+  Gift.find({
+    name: { $in: [ item ] }
+  })
+    .then((gifts) => {
+      res.json(gifts)
+    })
+    .catch(next)
+})
+
 //CREATE -> /gifts
 router.post('/', (req, res, next) => {
 	const giftData = req.body;
