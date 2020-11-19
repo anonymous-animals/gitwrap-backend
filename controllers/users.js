@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt')
 
+const Gift = require('../models/gift')
+
 const { createUserToken } = require('../middleware/auth');
 
 // SIGN UP
@@ -32,16 +34,39 @@ router.post('/signin', (req, res, next) => {
 });
 
 // ADD TO FAVORITES
-router.get('/favorites', (req, res, next) => {
-  User.find({})
-    .then((stuff) => {
-      res.json(stuff)
-    })
-    .catch(next)
-})
+// router.get('/favorites', (req, res, next) => {
+//   Gift.find({})
+//     .then((stuff) => {
+//       res.json(stuff)
+//     })
+//     .catch(next)
+// })
 // 
+//CREATE A GIFT IN USER
+router.post('/:id', (req, res, next) => {
+	// get the gift data from the body of the request
+  const giftData = req.body;
+  console.log(req)
+	// get the user id from the body
+	const userId = req.params.id;
+	// find the user by its id
+	User.findById(userId)
+		.then((user) => {
+			// add gift to user
+			user.favorites.push(giftData);
+			// save restaurant/user
+			return user.save();
+		})
+		// send responsne back to client
+    .then((user) => res.status(201).json({ user: user }))
+  
+		.catch(next);
+});
 
 
+//search through gifts
+//add selected gift to user
+//
 
 
 

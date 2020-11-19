@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Gift = require('../models/gift');
 
-const { requireToken } = require('../middleware/auth');
+// const { requireToken } = require('../middleware/auth');
 
 
 // INDEX -> /gifts
-router.get('/', requireToken, (req, res, next) => {
+router.get('/',  (req, res, next) => {
 	Gift.find({})
 		.then((gifts) => {
 			res.json(gifts);
@@ -88,6 +88,9 @@ router.post('/', (req, res, next) => {
 		.then((gift) => res.status(201).json(gift))
 		.catch(next);
 });
+
+
+
 
 //UPDATE -> /gifts/:id
 router.patch('/:id', (req, res, next) => {

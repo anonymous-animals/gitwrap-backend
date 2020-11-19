@@ -1,5 +1,6 @@
 const mongoose = require('../db/connection');
 
+const giftSchema = require('./gift')
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -15,7 +16,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    favorites: [String]
+    favorites: [Object]
   },
   {
     timestamps: true,
