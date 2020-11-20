@@ -25,7 +25,29 @@ router.post('/signup', (req, res, next) => {
 router.post('/signin', (req, res, next) => {
 	User.findOne({ email: req.body.email })
 		.then((user) => createUserToken(req, user))
-		.then((token) => res.json({ token }))
+		.then((token) => res.json({ token, message:"Success", username: req.body.username} ))
+		// .then(res.json({message:"Success", username: req.body.username}))
+		.catch(next);
+});
+
+// ROUTE FOR FRONT END TO CHECK IF LOGGED IN
+router.get('/login/:userId', (req, res) => {
+	User.findById(req.params.userId)
+	.then((userId))
+	if (token) {
+		res.send({ loggedIn: true, user:user})
+	} else {
+		res.send({loggedIn: false})
+	}
+})
+
+
+//INDEX OF ALL USERS
+router.get('/', (req, res, next) => {
+	User.find({})
+		.then((users) => {
+			res.json(users);
+		})
 		.catch(next);
 });
 
@@ -70,21 +92,7 @@ router.put('/:id/:giftId', (req, res, next) => {
 });
 
 
-// extra that can maybe be removed
-router.put('/id/:id/:giftId', (req, res, next) => {
-	Gift.findById(req.params.giftId)
-		.then((gift) => {
-			return User.findOneAndUpdate(
-				{ gift: req.body },
-				{ $push: { favorites: gift } },
-				{ new: true }
-			);
-		})
-		.then((user) => {
-			res.json(user);
-		})
-		.catch(next);
-});
+
 
 
 
