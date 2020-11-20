@@ -7,8 +7,7 @@ const Gift = require('../models/gift');
 
 const { createUserToken } = require('../middleware/auth');
 
-// SIGN UP
-// POST /user/signup
+// SIGN UP   /user/signup
 router.post('/signup', (req, res, next) => {
 	bcrypt
 		.hash(req.body.password, 10)
@@ -22,8 +21,7 @@ router.post('/signup', (req, res, next) => {
 		.catch(next);
 });
 
-// SIGN IN
-// POST /user/signin
+// SIGN IN   /user/signin
 router.post('/signin', (req, res, next) => {
 	User.findOne({ email: req.body.email })
 		.then((user) => createUserToken(req, user))
@@ -31,19 +29,7 @@ router.post('/signin', (req, res, next) => {
 		.catch(next);
 });
 
-// ADD TO FAVORITES
-// router.get('/favorites', (req, res, next) => {
-//   Gift.find({})
-//     .then((stuff) => {
-//       res.json(stuff)
-//     })
-//     .catch(next)
-// })
-//
-//CREATE A GIFT IN USER
-//
-router.get('/');
-
+// ADD
 router.post('/:id', (req, res, next) => {
 	// get the gift data from the body of the request
 	const giftData = req.body;
@@ -64,19 +50,19 @@ router.post('/:id', (req, res, next) => {
 		.catch(next);
 });
 
-//search through gifts
-//add selected gift to user's favorites category
-// exit
-// user/id/giftId
+// ADD GIFT TO USER FAVORITES LIST /user/id/giftId
 router.put('/:id/:giftId', (req, res, next) => {
+	//search through gifts
 	Gift.findById(req.params.giftId)
-		.then((gift) => {
-			return User.findOneAndUpdate(
-				{ _id: req.params.id },
-				{ $push: { favorites: gift } },
-				{ new: true }
+	.then((gift) => {
+		//add selected gift to user's favorites category
+		return User.findOneAndUpdate(
+			{ _id: req.params.id },
+			{ $push: { favorites: gift } },
+			{ new: true }
 			);
 		})
+		// exit
 		.then((user) => {
 			res.json(user);
 		})
@@ -84,7 +70,7 @@ router.put('/:id/:giftId', (req, res, next) => {
 });
 
 
-
+// extra that can maybe be removed
 router.put('/id/:id/:giftId', (req, res, next) => {
 	Gift.findById(req.params.giftId)
 		.then((gift) => {
@@ -102,7 +88,7 @@ router.put('/id/:id/:giftId', (req, res, next) => {
 
 
 
-//find users favorites
+// SHOW USER'S FAVORITES /user/gifts/userId
 router.get('/gifts/:userId', (req, res, next) => {
 	User.findById(req.params.userId)
 		.then((user) => {
@@ -115,6 +101,7 @@ router.get('/gifts/:userId', (req, res, next) => {
 		.catch(next);
 });
 
+// SHOW USER INFO /user/userId
 router.get('/user/:userId', (req, res, next) => {
 	User.findById(req.params.userId)
 		.then((user) => {
@@ -127,9 +114,5 @@ router.get('/user/:userId', (req, res, next) => {
 		.catch(next);
 });
 
-//aggregate function on collections
-//add logic to get gift data instead of just their ids
-//define a route as i'm getting the user by user.findbyid, send that user favorites as json response
-//to get all the gifts by the giftId
 
 module.exports = router;

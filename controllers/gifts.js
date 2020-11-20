@@ -33,9 +33,9 @@ router.get('/:id', (req, res, next) => {
 		.catch(next);
 });
 
-// FILTER PRICE /gifts/price/number
+// LIMIT PRICE /gifts/price/number
 router.get(`/price/:price/`, (req, res, next) => {
-  const min = 0
+  let min = 0
 	const max = req.params.price
 	const category = req.params.cateegory
   Gift.find({
@@ -47,7 +47,7 @@ router.get(`/price/:price/`, (req, res, next) => {
     .catch(next)
 })
 
-// ASCENDING SORT /gifts/sort/asc
+// ASCENDING SORT ALL /gifts/sort/asc
 router.get('/sort/asc', (req, res, next) => {
   Gift.find({}).sort({
     price: 1
@@ -58,7 +58,20 @@ router.get('/sort/asc', (req, res, next) => {
     .catch(next)
 })
 
-// DESCENDING SORT /gifts/sort/des
+// ASCENDING SORT BY CATEGORY /gifts/sort/category/asc
+router.get('/sort/:category/asc', (req, res, next) => {
+	const category = req.params.category;
+	Gift.find({ category: category })
+		.sort({
+			price: 1,
+		})
+		.then((gifts) => {
+			res.json(gifts);
+		})
+		.catch(next);
+})
+
+// DESCENDING SORT ALL /gifts/sort/des
 router.get('/sort/des', (req, res, next) => {
   Gift.find({}).sort({
     price: -1
@@ -69,17 +82,19 @@ router.get('/sort/des', (req, res, next) => {
     .catch(next)
 })
 
-// // DAMN
-// router.get('/damn/damn', (req, res, next) => {
-//   const item = 'MLB Game Used Baseball Bat Bottle Opener'
-//   Gift.find({
-//     name: { $in: [ item ] }
-//   })
-//     .then((gifts) => {
-//       res.json(gifts)
-//     })
-//     .catch(next)
-// })
+// DESCENDING SORT BY CATEGORY /gifts/sort/category/asc
+router.get('/sort/:category/asc', (req, res, next) => {
+	const category = req.params.category;
+	Gift.find({ category: category })
+		.sort({
+			price: -1,
+		})
+		.then((gifts) => {
+			res.json(gifts);
+		})
+		.catch(next);
+})
+
 
 //CREATE -> /gifts
 router.post('/', (req, res, next) => {
@@ -88,8 +103,6 @@ router.post('/', (req, res, next) => {
 		.then((gift) => res.status(201).json(gift))
 		.catch(next);
 });
-
-
 
 
 //UPDATE -> /gifts/:id
@@ -114,7 +127,5 @@ router.delete('/:id', (req, res, next) => {
 		})
 		.catch(next);
 });
-
-//make route that has favorites 
 
 module.exports = router;

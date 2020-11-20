@@ -16,11 +16,6 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		// favorites: [{
-		//   ref: 'Gift',
-		//   type: mongoose.Schema.Types.ObjectId,
-
-		// }]
 		favorites: [
 			{
 				name: {
