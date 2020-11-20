@@ -29,6 +29,16 @@ router.post('/signin', (req, res, next) => {
 		.catch(next);
 });
 
+
+//INDEX OF ALL USERS
+router.get('/', (req, res, next) => {
+	User.find({})
+		.then((users) => {
+			res.json(users);
+		})
+		.catch(next);
+});
+
 // ADD
 router.post('/:id', (req, res, next) => {
 	// get the gift data from the body of the request
@@ -70,21 +80,7 @@ router.put('/:id/:giftId', (req, res, next) => {
 });
 
 
-// extra that can maybe be removed
-router.put('/id/:id/:giftId', (req, res, next) => {
-	Gift.findById(req.params.giftId)
-		.then((gift) => {
-			return User.findOneAndUpdate(
-				{ gift: req.body },
-				{ $push: { favorites: gift } },
-				{ new: true }
-			);
-		})
-		.then((user) => {
-			res.json(user);
-		})
-		.catch(next);
-});
+
 
 
 
