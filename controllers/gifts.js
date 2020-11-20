@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Gift = require('../models/gift');
 
-// const { requireToken } = require('../middleware/auth');
+const { requireToken } = require('../middleware/auth');
 
 
 // INDEX -> /gifts
@@ -15,7 +15,7 @@ router.get('/',  (req, res, next) => {
 });
 
 // INDEX FOR CATEGORIES /gifts/:category
-router.get('/category/:category', (req, res, next) => {
+router.get('/category/:category', requireToken, (req, res, next) => {
 	const category = req.params.category;
 	Gift.find({ category: category })
 		.then((gifts) => {
