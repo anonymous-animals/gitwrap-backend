@@ -82,8 +82,8 @@ router.get('/sort/des', (req, res, next) => {
     .catch(next)
 })
 
-// DESCENDING SORT BY CATEGORY /gifts/sort/category/asc
-router.get('/sort/:category/asc', (req, res, next) => {
+// DESCENDING SORT BY CATEGORY /gifts/sort/category/des
+router.get('/sort/:category/des', (req, res, next) => {
 	const category = req.params.category;
 	Gift.find({ category: category })
 		.sort({
