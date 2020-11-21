@@ -25,7 +25,13 @@ router.post('/signup', (req, res, next) => {
 router.post('/signin', (req, res, next) => {
 	User.findOne({ email: req.body.email })
 		.then((user) => createUserToken(req, user))
-		.then((token) => res.json({ token, message:"Success", username: req.body.username} ))
+		// .then(res.send({
+		// 	auth: true,
+		// 	token: token,
+		// 	message: 'user found and logged in'
+		// }))
+		.then((token) => res.json({ token }))
+		// .then((token) => res.json({ token, message:"Success", username: req.body.username} ))
 		// .then(res.json({message:"Success", username: req.body.username}))
 		.catch(next);
 });
