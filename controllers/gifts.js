@@ -15,7 +15,7 @@ router.get('/',  (req, res, next) => {
 });
 
 // INDEX FOR CATEGORIES /gifts/:category
-router.get('/category/:category', requireToken, (req, res, next) => {
+router.get('/category/:category', (req, res, next) => {
 	const category = req.params.category;
 	Gift.find({ category: category })
 		.then((gifts) => {
