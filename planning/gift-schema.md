@@ -7,10 +7,17 @@
 - "link": "",
 - "category": ""
 
-
 ## Possible Categories
 
+- tech
+- music
+- food
+- movies
+- adventure
+- sports
+
 ### For Someone
+
 - For Him
 - For Her
 - For Parents
@@ -22,6 +29,7 @@
 - For your coworker
 
 ### Occasion Categories
+
 - Holidays
 - Birthdays
 - Anniversaries

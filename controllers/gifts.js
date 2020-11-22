@@ -38,12 +38,11 @@ router.get('/:id', (req, res, next) => {
 router.get(`/price/:price/`, (req, res, next) => {
   let min = 0
 	const max = req.params.price
-	const category = req.params.cateegory
   Gift.find({
 		price: { $gt: min, $lt: max },
   })
   .sort({
-	  price: 1,
+	  price: -1,
   })
     .then((gifts) => {
       res.json(gifts)
