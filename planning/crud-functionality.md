@@ -1,19 +1,22 @@
 # CRUD
 
-## Full CRUD Functionality for one item ---> maybe for the users/secret santa group?
+## Full CRUD Functionality for one item
 
-C- create a person, and the categories they hold
-R - Read their categories and suggested items
-U - Update categories/name of person
-D - delete categories/person
+MVP - GIFTS :
+C - a user can create a gift
+CREATE - '/add-gift'
+R - a user can see a list of gifts
+INDEX - '/category/:category'
+SHOW - '/gifts/:id'
+U - a user can update the show page for a gift
+UPDATE - '/gifts/:id' (shows as modal on show page)
+D - a user can delete a gift
+DEELETE - '/gifts/:id' (shows as a button on show page)
 
-## CRUD for gifts  - MVP 
-C - create a gift 
-R - see list of all gifts 
-U - update a gift option (ie price) 
-D - delete a gift 
+## CRUD functionality for user login- SILVER
 
-## CRUD for user (session and usernames for login) - gold
-C - create a user login
-U - update user credentials 
-D - delete user login 
+SILVER - USER LOGIN:
+C- a user can create a user profile and login credentials
+R - a user can view their favorites list
+U - a user can update the gifts shown in their favorites list
+D - a user can delete the gifts shown in their favorites list
