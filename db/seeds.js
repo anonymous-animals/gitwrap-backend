@@ -14,11 +14,11 @@ Gift.deleteMany({})
 
 ////////////////
 
-const User = require('../models/user')
+// const User = require('../models/user')
 
-User.deleteMany({})
-.then(console.log)
-.catch(console.error)
-.finally(() => {
-    process.exit()
-})
+// User.deleteMany({})
+// .then(console.log)
+// .catch(console.error)
+// .finally(() => {
+//     process.exit()
+// })
