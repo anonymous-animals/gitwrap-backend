@@ -33,3 +33,13 @@ Run 'node index.js' to run on your local server
 We, the Anonymous Animals team, welcome any feedback on this application. If you would like to contribute, please fork/clone this repo, make you changes, and submit a pull request.
 
 https://github.com/anonymous-animals/gitwrap-backend
+
+Features to be added:
+
+Secret Santa/White Elephant feature for the holidays
+
+- As a user, I want to be able to log in and create a list of participants in secret santa.
+- Each user could possible be assigned login credentials to see their recipient. With one admin who can see the entire list
+- As a user, I want the application to swap the names and create a list of users and their secret santa/white elephant recipients. The user and their recipient cannot be the same name
+- As a user, I want to be able to input a price limit on gift options (ie: $10, $20, $50, etc...)
+- Once a price limit is set the application should respond with a list of potential gift ideas of the user to give to their recipient
