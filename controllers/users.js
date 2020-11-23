@@ -92,10 +92,6 @@ router.put('/:id/:giftId', (req, res, next) => {
 });
 
 
-
-
-
-
 // SHOW USER'S FAVORITES /user/gifts/userId
 router.get('/gifts/:userId', (req, res, next) => {
 	User.findById(req.params.userId)
