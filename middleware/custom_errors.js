@@ -78,6 +78,14 @@ const handleValidateId = (req, res, next) => {
   }
 };
 
+const handleBadCredentials = (credential) => {
+	if (!credential) {
+		throw new BadCredentialsError();
+	} else {
+		return credential;
+	}
+};
+
 const handleValidationErrors = (err, req, res, next) => {
   if (err.name.match(/Valid/) || err.name === 'MongoError') {
     throw new BadParamsError();
@@ -103,9 +111,10 @@ const handleErrors = (err, req, res, next) => {
 };
 
 module.exports = {
-  handleValidateOwnership,
-  handleRecordExists,
-  handleValidateId,
-  handleValidationErrors,
-  handleErrors,
+	handleValidateOwnership,
+	handleRecordExists,
+	handleValidateId,
+	handleValidationErrors,
+	handleErrors,
+	handleBadCredentials
 };
