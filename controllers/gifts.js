@@ -39,7 +39,7 @@ router.get(`/price/:price/`, (req, res, next) => {
 		price: { $gt: min, $lt: max },
   })
   .sort({
-	  price: -1,
+		price: -1,
   })
     .then((gifts) => {
       res.json(gifts)
@@ -96,7 +96,7 @@ router.get('/sort/:category/des', (req, res, next) => {
 		.catch(next);
 })
 
-
+// dev routes
 //CREATE -> /gifts
 router.post('/', (req, res, next) => {
 	const giftData = req.body;
@@ -104,7 +104,6 @@ router.post('/', (req, res, next) => {
 		.then((gift) => res.status(201).json(gift))
 		.catch(next);
 });
-
 
 //UPDATE -> /gifts/:id
 router.patch('/:id', (req, res, next) => {

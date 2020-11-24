@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
-const bcrypt = require('bcrypt');
-
 const Gift = require('../models/gift');
 
+const bcrypt = require('bcrypt');
 const { createUserToken } = require('../middleware/auth');
-
 const { requireToken } = require('../middleware/auth');
 
 
@@ -66,7 +64,6 @@ router.get('/gifts/:userId', requireToken, (req, res, next) => {
 		.then((user) => {
 			return user.favorites;
 		})
-		//getting an array of our favorites
 		.then((gifts) => {
 			res.json(gifts);
 		})
@@ -79,7 +76,7 @@ router.patch('/:id/:giftId', requireToken, (req, res, next) => {
 	//search through users
 	User.findById(req.params.id)
 		.then(() => {
-			//delete selected gift from user's favorites category
+			//update selected gift from user's favorites category
 			return User.findOneAndUpdate(
 				{ _id: req.params.id },
 				{ $set: { favorites: { 
