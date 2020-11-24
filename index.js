@@ -27,6 +27,9 @@ app.use('/gifts', giftsController)
 const userController = require('./controllers/users')
 app.use('/user', userController)
 
+const favoritesController = require('./controllers/favorites')
+app.use('/favorites', favoritesController)
+
 
 
 app.use((err, req, res, next) => {

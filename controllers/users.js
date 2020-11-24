@@ -7,6 +7,9 @@ const Gift = require('../models/gift');
 
 const { createUserToken } = require('../middleware/auth');
 
+const { requireToken } = require('../middleware/auth');
+
+
 // SIGN UP   /user/signup
 router.post('/signup', (req, res, next) => {
 	bcrypt
@@ -26,54 +29,20 @@ router.post('/signin', (req, res, next) => {
 	User.findOne({ email: req.body.email })
 		.then((user) => createUserToken(req, user))
 		.then((token) => res.json({ token, message:"Success", username: req.body.username} ))
-		// .then(res.json({message:"Success", username: req.body.username}))
 		.catch(next);
 });
 
-// ROUTE FOR FRONT END TO CHECK IF LOGGED IN
-router.get('/login/:userId', (req, res) => {
+// SHOW USER INFO /user/userId
+router.get('/user/:userId', requireToken, (req, res, next) => {
 	User.findById(req.params.userId)
-	.then((userId))
-	if (token) {
-		res.send({ loggedIn: true, user:user})
-	} else {
-		res.send({loggedIn: false})
-	}
-})
-
-
-//INDEX OF ALL USERS
-router.get('/', (req, res, next) => {
-	User.find({})
-		.then((users) => {
-			res.json(users);
-		})
-		.catch(next);
-});
-
-// ADD
-router.post('/:id', (req, res, next) => {
-	// get the gift data from the body of the request
-	const giftData = req.body;
-	console.log(req);
-	// get the user id from the body
-	const userId = req.params.id;
-	// find the user by its id
-	User.findById(userId)
 		.then((user) => {
-			// add gift to user
-			user.favorites.push(giftData);
-			// save restaurant/user
-			return user.save();
+			res.json(user);
 		})
-		// send responsne back to client
-		.then((user) => res.status(201).json({ user: user }))
-
 		.catch(next);
 });
 
-// ADD GIFT TO USER FAVORITES LIST /user/id/giftId
-router.put('/:id/:giftId', (req, res, next) => {
+// ADD TO USER'S FAVORITES LIST /user/id/giftId
+router.put('/:id/:giftId', requireToken, (req, res, next) => {
 	//search through gifts
 	Gift.findById(req.params.giftId)
 	.then((gift) => {
@@ -91,34 +60,72 @@ router.put('/:id/:giftId', (req, res, next) => {
 		.catch(next);
 });
 
-
-
-
-
-
 // SHOW USER'S FAVORITES /user/gifts/userId
-router.get('/gifts/:userId', (req, res, next) => {
+router.get('/gifts/:userId', requireToken, (req, res, next) => {
 	User.findById(req.params.userId)
 		.then((user) => {
 			return user.favorites;
 		})
 		//getting an array of our favorites
 		.then((gifts) => {
-			console.log(gifts);
+			res.json(gifts);
 		})
 		.catch(next);
 });
 
-// SHOW USER INFO /user/userId
-router.get('/user/:userId', (req, res, next) => {
-	User.findById(req.params.userId)
+// UPDATE A SPECIFIC ITEM IN USER'S FAORITES /user/id/giftId
+router.patch('/:id/:giftId', requireToken, (req, res, next) => {
+	const gift = req.body
+	//search through users
+	User.findById(req.params.id)
+		.then(() => {
+			//delete selected gift from user's favorites category
+			return User.findOneAndUpdate(
+				{ _id: req.params.id },
+				{ $set: { favorites: { 
+					category: gift.category[0],
+					name: gift.name, 
+					description: gift.description,
+					image: gift.image,
+					price: gift.price,
+					link: gift.link,
+				} } }
+			);
+		})
+		// exit
 		.then((user) => {
 			res.json(user);
 		})
-		//getting an array of our favorites
-		// .then((gifts) => {
-		// 	console.log(gifts);
-		// })
+		.catch(next);
+});
+
+// DELETE A USER'S FAVORITES LIST /user/id/giftId
+router.delete('/:id/:giftId', requireToken, (req, res, next) => {
+	const gift = req.params.giftId
+	//search through users
+	User.findById(req.params.id)
+	.then(() => {
+		//delete selected gift from user's favorites category
+		return User.findOneAndUpdate(
+			{ _id: req.params.id },
+			{ $pull: { favorites: { _id:gift } } },
+			{ safe: true }
+			);
+		})
+		// exit
+		.then((user) => {
+			res.json(user);
+		})
+		.catch(next);
+});
+
+// dev route
+//INDEX OF ALL USERS /user
+router.get('/', (req, res, next) => {
+	User.find({})
+		.then((users) => {
+			res.json(users);
+		})
 		.catch(next);
 });
 
