@@ -39,7 +39,11 @@ router.get(`/price/:price/`, (req, res, next) => {
 		price: { $gt: min, $lt: max },
   })
   .sort({
+<<<<<<< HEAD
 		price: -1,
+=======
+	  price: -1,
+>>>>>>> 0469863 (changing from asc to des)
   })
     .then((gifts) => {
       res.json(gifts)
