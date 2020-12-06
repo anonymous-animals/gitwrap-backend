@@ -24,9 +24,13 @@ router.post('/signup', (req, res, next) => {
 
 // SIGN IN   /user/signin
 router.post('/signin', (req, res, next) => {
+	let signedInUser
 	User.findOne({ email: req.body.email })
-		.then((user) => createUserToken(req, user))
-		.then((token) => res.json({ token, message:"Success", username: req.body.username} ))
+		.then((user) => {
+			signedInUser = user
+			return	createUserToken(req, user)
+		})
+		.then((token) => res.json({ token, message:"Success", userId: signedInUser.id} ))
 		.catch(next);
 });
 
@@ -34,7 +38,7 @@ router.post('/signin', (req, res, next) => {
 router.get('/user/:userId', requireToken, (req, res, next) => {
 	User.findById(req.params.userId)
 		.then((user) => {
-			res.json(user);
+			res.json(user); 
 		})
 		.catch(next);
 });

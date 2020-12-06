@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema(
 		username: {
 			type: String,
 			required: true,
+			unique: true,
 		},
 		email: {
 			type: String,
@@ -40,6 +41,7 @@ const userSchema = new mongoose.Schema(
 		timestamps: true,
 		toJSON: {
 			virtuals: true,
+			id: true,
 			transform: (_doc, ret) => {
 				delete ret.password;
 				return ret;
